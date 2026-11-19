@@ -1,0 +1,328 @@
+{
+ "n_runs": 20,
+ "results": {
+  "gap12": {
+   "0.0": {
+    "UKF": {
+     "inside_pct": 99.97925311203319,
+     "inside_first_hour_pct": 100.0,
+     "rms_km_median": 0.35454912548819484,
+     "final_km_median": 0.04208342975135831,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 0.5107544782723544,
+     "widened_runs": 0
+    },
+    "UKF told of burn": {
+     "inside_pct": 90.80912863070539,
+     "inside_first_hour_pct": 94.16666666666667,
+     "rms_km_median": 0.9910935832120091,
+     "final_km_median": 0.17154568578169038,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 0.7027328165668295,
+     "widened_runs": 0
+    },
+    "EAF": {
+     "inside_pct": 100.0,
+     "inside_first_hour_pct": 100.0,
+     "rms_km_median": 0.5823476817555189,
+     "final_km_median": 0.06614746689805773,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 7.430408910694274,
+     "widened_runs": 0
+    }
+   },
+   "0.3": {
+    "UKF": {
+     "inside_pct": 99.25311203319502,
+     "inside_first_hour_pct": 95.83333333333334,
+     "rms_km_median": 0.7343923065154161,
+     "final_km_median": 0.06233589955943205,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 0.5107917528276746,
+     "widened_runs": 0
+    },
+    "UKF told of burn": {
+     "inside_pct": 93.69294605809128,
+     "inside_first_hour_pct": 98.33333333333333,
+     "rms_km_median": 1.2175925037722428,
+     "final_km_median": 0.17374649824778376,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 0.7027681316256094,
+     "widened_runs": 0
+    },
+    "EAF": {
+     "inside_pct": 100.0,
+     "inside_first_hour_pct": 100.0,
+     "rms_km_median": 1.9621874599199538,
+     "final_km_median": 0.07773384025204264,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 7.70981937120958,
+     "widened_runs": 0
+    }
+   },
+   "1.0": {
+    "UKF": {
+     "inside_pct": 73.7344398340249,
+     "inside_first_hour_pct": 50.83333333333333,
+     "rms_km_median": 1.2616821817349457,
+     "final_km_median": 0.16471816179008625,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 0.5120563141081256,
+     "widened_runs": 0
+    },
+    "UKF told of burn": {
+     "inside_pct": 94.10788381742738,
+     "inside_first_hour_pct": 96.0,
+     "rms_km_median": 1.129434806297182,
+     "final_km_median": 0.16150177603698954,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 0.7034626999958657,
+     "widened_runs": 0
+    },
+    "EAF": {
+     "inside_pct": 100.0,
+     "inside_first_hour_pct": 100.0,
+     "rms_km_median": 5.551390379693416,
+     "final_km_median": 1.3686036661216567,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 18.386235191470202,
+     "widened_runs": 0
+    }
+   },
+   "2.0": {
+    "UKF": {
+     "inside_pct": 46.41078838174274,
+     "inside_first_hour_pct": 10.666666666666668,
+     "rms_km_median": 3.726298040171664,
+     "final_km_median": 0.2534869353311056,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 0.5106205906757656,
+     "widened_runs": 0
+    },
+    "UKF told of burn": {
+     "inside_pct": 93.19502074688796,
+     "inside_first_hour_pct": 98.0,
+     "rms_km_median": 1.236653831198017,
+     "final_km_median": 0.15400367854408648,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 0.7031088900593212,
+     "widened_runs": 0
+    },
+    "EAF": {
+     "inside_pct": 36.78423236514523,
+     "inside_first_hour_pct": 42.16666666666667,
+     "rms_km_median": 35.81543383233855,
+     "final_km_median": 24.76012094917001,
+     "runs_final_over_5km": 13,
+     "halfwidth_km_median": 32.874575726098584,
+     "widened_runs": 7
+    }
+   },
+   "3.0": {
+    "UKF": {
+     "inside_pct": 19.377593360995853,
+     "inside_first_hour_pct": 1.6666666666666667,
+     "rms_km_median": 5.1689508550946215,
+     "final_km_median": 0.6111607669537934,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 0.5095190953664341,
+     "widened_runs": 0
+    },
+    "UKF told of burn": {
+     "inside_pct": 94.149377593361,
+     "inside_first_hour_pct": 98.33333333333333,
+     "rms_km_median": 1.0448496774060072,
+     "final_km_median": 0.10631682230220706,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 0.702170752544004,
+     "widened_runs": 0
+    },
+    "EAF": {
+     "inside_pct": 75.12448132780082,
+     "inside_first_hour_pct": 76.0,
+     "rms_km_median": 2.615302790366205,
+     "final_km_median": 1.1159259900086886,
+     "runs_final_over_5km": 5,
+     "halfwidth_km_median": 11.10730442169018,
+     "widened_runs": 15
+    }
+   },
+   "5.0": {
+    "UKF": {
+     "inside_pct": 5.435684647302905,
+     "inside_first_hour_pct": 0.0,
+     "rms_km_median": 7.9936439765089276,
+     "final_km_median": 2.491751361691411,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 0.5098581162458078,
+     "widened_runs": 0
+    },
+    "UKF told of burn": {
+     "inside_pct": 45.601659751037346,
+     "inside_first_hour_pct": 61.16666666666667,
+     "rms_km_median": 2.349149590580323,
+     "final_km_median": 0.6496071665658558,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 0.7018960460999698,
+     "widened_runs": 0
+    },
+    "EAF": {
+     "inside_pct": 76.70124481327801,
+     "inside_first_hour_pct": 100.0,
+     "rms_km_median": 4.866439041715453,
+     "final_km_median": 4.595379203024438,
+     "runs_final_over_5km": 10,
+     "halfwidth_km_median": 10.756435847551737,
+     "widened_runs": 20
+    }
+   },
+   "10.0": {
+    "UKF": {
+     "inside_pct": 0.06224066390041493,
+     "inside_first_hour_pct": 0.0,
+     "rms_km_median": 21.385018997709096,
+     "final_km_median": 2.6925730529980627,
+     "runs_final_over_5km": 8,
+     "halfwidth_km_median": 0.5089593259357961,
+     "widened_runs": 0
+    },
+    "UKF told of burn": {
+     "inside_pct": 29.004149377593365,
+     "inside_first_hour_pct": 40.666666666666664,
+     "rms_km_median": 3.6912812485842346,
+     "final_km_median": 1.41678251458732,
+     "runs_final_over_5km": 2,
+     "halfwidth_km_median": 0.7034090542640281,
+     "widened_runs": 0
+    },
+    "EAF": {
+     "inside_pct": 52.86307053941909,
+     "inside_first_hour_pct": 95.0,
+     "rms_km_median": 11.333524863023717,
+     "final_km_median": 20.734206906167614,
+     "runs_final_over_5km": 14,
+     "halfwidth_km_median": 19.841004184656917,
+     "widened_runs": 19
+    }
+   }
+  },
+  "gap0": {
+   "0.0": {
+    "UKF": {
+     "inside_pct": 99.97925311203319,
+     "inside_first_hour_pct": 100.0,
+     "rms_km_median": 0.49342317631208976,
+     "final_km_median": 0.1087320184645934,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 2.016065122597199,
+     "widened_runs": 0
+    },
+    "UKF told of burn": {
+     "inside_pct": 99.95850622406638,
+     "inside_first_hour_pct": 100.0,
+     "rms_km_median": 0.7188594711704952,
+     "final_km_median": 0.09813481230041075,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 2.3169764775159165,
+     "widened_runs": 0
+    },
+    "EAF": {
+     "inside_pct": 100.0,
+     "inside_first_hour_pct": 100.0,
+     "rms_km_median": 1.1205823372961603,
+     "final_km_median": 0.25377099921484836,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 9.584483156290702,
+     "widened_runs": 0
+    }
+   },
+   "1.0": {
+    "UKF": {
+     "inside_pct": 66.92946058091286,
+     "inside_first_hour_pct": 46.833333333333336,
+     "rms_km_median": 1.7374037149373707,
+     "final_km_median": 0.12689469300016284,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 2.0164330819197085,
+     "widened_runs": 0
+    },
+    "UKF told of burn": {
+     "inside_pct": 100.0,
+     "inside_first_hour_pct": 100.0,
+     "rms_km_median": 0.9176369927985841,
+     "final_km_median": 0.09070595154646474,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 2.317176962822665,
+     "widened_runs": 0
+    },
+    "EAF": {
+     "inside_pct": 30.726141078838175,
+     "inside_first_hour_pct": 98.66666666666667,
+     "rms_km_median": 14.516527091102684,
+     "final_km_median": 19.182728995093306,
+     "runs_final_over_5km": 20,
+     "halfwidth_km_median": 16.440618772419597,
+     "widened_runs": 0
+    }
+   },
+   "3.0": {
+    "UKF": {
+     "inside_pct": 19.79253112033195,
+     "inside_first_hour_pct": 10.666666666666668,
+     "rms_km_median": 5.62379739723592,
+     "final_km_median": 0.37801708968279424,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 2.017507233122852,
+     "widened_runs": 0
+    },
+    "UKF told of burn": {
+     "inside_pct": 99.93775933609959,
+     "inside_first_hour_pct": 99.5,
+     "rms_km_median": 1.0156354779125856,
+     "final_km_median": 0.1150416858547546,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 2.3182742126433706,
+     "widened_runs": 0
+    },
+    "EAF": {
+     "inside_pct": 5.0,
+     "inside_first_hour_pct": 40.166666666666664,
+     "rms_km_median": 50.89207137100392,
+     "final_km_median": 78.13411968012088,
+     "runs_final_over_5km": 20,
+     "halfwidth_km_median": 16.724850157663184,
+     "widened_runs": 0
+    }
+   },
+   "10.0": {
+    "UKF": {
+     "inside_pct": 6.037344398340249,
+     "inside_first_hour_pct": 4.333333333333334,
+     "rms_km_median": 22.275608668679304,
+     "final_km_median": 0.5529722238999307,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 2.0174352995666096,
+     "widened_runs": 0
+    },
+    "UKF told of burn": {
+     "inside_pct": 97.5311203319502,
+     "inside_first_hour_pct": 86.0,
+     "rms_km_median": 1.4818562317029151,
+     "final_km_median": 0.11902250696690408,
+     "runs_final_over_5km": 0,
+     "halfwidth_km_median": 2.315055847123176,
+     "widened_runs": 0
+    },
+    "EAF": {
+     "inside_pct": 1.6390041493775935,
+     "inside_first_hour_pct": 13.166666666666666,
+     "rms_km_median": 213.26131777184875,
+     "final_km_median": 457.0894093261064,
+     "runs_final_over_5km": 20,
+     "halfwidth_km_median": 16.399160186977213,
+     "widened_runs": 0
+    }
+   }
+  }
+ }
+}
