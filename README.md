@@ -2,12 +2,13 @@
 
 This repository explains the Epistemic Abductive Filter (EAF) of M. K. Jah
 ([Preprints 202610.2608](https://www.preprints.org/manuscript/202610.2608), 2026) with a small,
-readable implementation and one orbit-tracking scenario. The scenario was chosen to show the one
-situation in which the EAF does something a Kalman-type filter cannot. The same scenario, pushed a
-little further, also shows where the EAF fails.
+readable implementation and one orbit-tracking scenario. The scenario shows a situation in which the
+EAF does something a Kalman-type filter cannot: it notices that its prior is wrong. Varying the same
+scenario also shows where the filter reaches its limits.
 
-The code is our reading of the preprint, not the author's implementation, which is not public. Where
-the preprint leaves a choice open, the choice is stated in the code.
+The code is our reading of the preprint, not the author's implementation. Where the preprint leaves
+a choice open, the choice is stated in the code, and any mistakes are ours. Corrections are welcome
+as issues.
 
 ## The idea
 
@@ -37,7 +38,7 @@ overlap: the filter widens the support with a velocity impulse until they do, th
 emptiness statistic δ_λ of the two cases; its maximum δ\* is above 1 exactly when the intersection
 is empty.*
 
-Two features matter for the rest of this page.
+Two parts of the algorithm explain most of what follows.
 
 - The emptiness test. If δ\* > 1, the support and the cut do not meet, so at least one declaration
   is false. The filter does not average the conflict away. It looks for the simplest explanation (the
@@ -45,9 +46,10 @@ Two features matter for the rest of this page.
   consistent measurement, and widens the support just enough to admit it. A Kalman filter has an
   innovation test too, but nothing in its update responds to it.
 - The update is deliberately gentle. The tolerance ε = 0.002 limits the weight to λ ≥ (1 + ε)⁻² ≈
-  0.996, and the least-volume member is almost always at that limit (the preprint reports 99.5 % of
-  updates). The support contracts quickly only when the cut is much narrower than the support. In
-  Figure 1 the cut is 25 times narrower. With a wider cut the update leaves the prior nearly as it was.
+  0.996, and the least-volume member is almost always at that limit. The preprint reports this for
+  99.5 % of its updates and notes that it gives up some of the information in the data. The support
+  contracts quickly only when the cut is much narrower than the support. In Figure 1 the cut is 25
+  times narrower. With a wider cut the update leaves the prior nearly as it was.
 
 The third piece is a gate on ρ, the multiple of the sensor resolution that defines the cut. When the
 predicted centre's residual falls outside the cut (a miss) but the test above does not fire, ρ grows by
@@ -87,11 +89,11 @@ the EAF is built for.
 estimate to the boundary of the filter's region in the direction of the truth (the EAF support, or a
 UKF's 99.73 % position ellipsoid). Above 1, the truth is outside.*
 
-After 12 hours the stale prior is about 410 km from the truth, mostly along the orbit. At the first
-measurement the EAF's emptiness test fires (δ\* > 1), the filter widens its support with an impulse, and from then on
-the truth is inside its region at every epoch. The UKF never has the truth inside its region during
-the 8 hours. Its error comes down to about 2 km, but it reports a region with a semi-axis of 0.5 km,
-so it is confidently wrong all night. The UKF that was told of the burn is the most accurate, but is
+After 12 hours the stale prior is about 410 km from the truth. At the first measurement the EAF's
+emptiness test fires (δ\* > 1), the filter widens its support with an impulse, and from then on the
+truth is inside its region at every epoch. The UKF never has the truth inside its region during the
+8 hours. Its error comes down to about 2 km, but it reports a region with a semi-axis of 0.5 km, so
+it is confidently wrong all night. The UKF that was told of the burn is the most accurate, but it is
 also overconfident for about 5 of the 8 hours.
 
 | Filter (run of Figure 2) | RMS position error | epochs with the truth inside | median largest semi-axis |
@@ -100,9 +102,9 @@ also overconfident for about 5 of the 8 hours.
 | UKF told of burn | 1.07 km | 35 % | 0.71 km |
 | EAF | 2.26 km | 100 % | 7.25 km |
 
-This is the case for the EAF in one sentence: when the prior is wrong in a way the data contradict
-immediately, the EAF notices, says so, and reports a region that is honest. Its price is a region
-about 14 times larger.
+When the prior is wrong in a way the data contradict right away, the EAF notices, flags it, and
+reports a region that still contains the truth. The cost is a region about 14 times larger than the
+UKF's.
 
 ## How often it works
 
@@ -126,20 +128,23 @@ Epochs with the truth inside (%), median RMS position error (km), and runs endin
 | 5 | 5 / 7.99 / 0 | 46 / 2.35 / 0 | 77 / 4.87 / 10 | 20 |
 | 10 | 0 / 21.4 / 8 | 29 / 3.69 / 2 | 53 / 11.3 / 14 | 19 |
 
-The UKF's containment falls steadily with the size of the burn: it never notices. The EAF's
-containment is at least as good as the UKF's at every burn size except 2 m/s. But it is not reliable. Its runs mostly
-split into ones that recover, with the truth inside all night, and ones that end tens to hundreds of
-kilometres off. The next section explains the split.
+The UKF's containment falls steadily with the size of the burn, because it never notices the burn.
+The EAF's containment is at least as good as the UKF's at every burn size except 2 m/s, but it is
+less even from run to run. Most runs either recover, with the truth inside all night, or end tens to
+hundreds of kilometres off. The next section looks at why.
 
-## Where it does not work
+## Limits
 
-The failures follow from the two features described above.
+These results use the preprint's constants unchanged, together with our choices for the steps the
+preprint leaves open (mainly how the widening impulse enters the support). The constants were not
+tuned for angles-only tracking at GEO, and the author's implementation may behave differently. With
+that caveat, the cases below follow from the two parts of the algorithm described above.
 
 ### 1. The prior is correct
 
 With no burn, every filter keeps the truth, and the UKF is more accurate (0.35 km against 0.58 km)
 with a region 15 times smaller. When the declarations are all true, a well-tuned Gaussian filter is
-the better choice. The EAF only pays off when a declaration is false.
+the better choice. The EAF pays off when a declaration turns out to be false.
 
 ### 2. The prior is wrong, but not wrong enough to refute
 
@@ -171,8 +176,8 @@ runs with the truth inside the region.*
 | 10 | 6 / 22.3 / 0 | 98 / 1.48 / 0 | 2 / 213 / 20 |
 
 Here the EAF widened in none of the 80 runs and lost every run with a burn, while the UKF slowly
-recovers. A filter that relies on detecting a contradiction is helpless against a contradiction that
-builds up gradually.
+recovers. Detecting a contradiction works well when the contradiction is sudden. When it builds up
+gradually, there is nothing for the test to catch.
 
 ### 3. The prior is refuted, but the widened support is too large to linearise
 
@@ -180,10 +185,11 @@ At 10 m/s the first measurement is refuted, and the widening gives a support wit
 several hundred kilometres that does contain the truth. From then on every declaration is true, so
 in a linear problem the truth could never leave the support again. The extended EAF, however,
 linearises the dynamics and the measurement about its centre, and over a region that large neither
-is linear. In one traced run the truth leaves the support about two hours after the widening, no
-later measurement is decisive, and failure 2 takes over; 14 of the 20 runs end more than 5 km off. The preprint's linearisation indicator (its
-eq. 10) peaks at about 0.2 in these runs, above its threshold of 0.1, but it does so in the runs that
-recover as well. It flags the risk without telling which runs will fail.
+is linear. In one run we traced, the truth leaves the support about two hours after the widening,
+no later measurement is decisive, and case 2 takes over. In all, 14 of the 20 runs end more than 5 km
+off. The preprint anticipates this and gives a linearisation indicator (its eq. 10). Here it peaks at
+about 0.2, above its threshold of 0.1, but it does so in the runs that recover as well, so it warns
+of the risk without singling out the runs that fail.
 
 ### 4. A filter that is told is better
 
@@ -202,9 +208,9 @@ it overconfident at 6 to 71 % of epochs. The EAF's advantage is for the case nob
 | Prior silently wrong, but the contradiction builds up slowly | neither; the EAF coasts, the UKF recovers slowly |
 | A refuted prior leaves a support too large for linearisation | neither is reliable |
 
-The EAF is a detector and a bookkeeper of what is still possible. It is worth using when the cost of
-a confidently wrong answer is high and the errors to guard against are abrupt. It is not a more
-accurate filter.
+The way we read it, the EAF is best thought of as a detector and a record of what is still possible,
+not as a more accurate replacement for a Kalman filter. It is worth using when a confidently wrong
+answer is costly and the errors to guard against are abrupt.
 
 ## Notes on the implementation
 
